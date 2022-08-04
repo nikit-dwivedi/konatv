@@ -11,7 +11,7 @@ module.exports = {
         try {
             let url = auth(username, password)
             const serverCheck = await get(url)
-            if (serverCheck.auth || serverCheck.user_info.status == "Expied") {
+            if (!serverCheck.user_info.auth || serverCheck.user_info.status == "Expied") {
                 return false;
             }
             const clientData = await userModel.findOne({ username });
